@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Weimi</title>
+<style>
+:root{--pink:#f7a9c4;--deep:#b83f70;--cream:#fff8f7;--ink:#61364b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 15%,#fff 0 3%,transparent 28%),linear-gradient(135deg,#ffe8ef,#fff6f2 55%,#f8d9e5);overflow-x:hidden}
+main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px;position:relative}
+.card{width:min(100%,540px);text-align:center;background:#ffffffd9;border:1px solid #fff;box-shadow:0 18px 60px #9f456322;border-radius:28px;padding:30px 22px;backdrop-filter:blur(8px);position:relative;z-index:2}
+.kicker{letter-spacing:3px;color:#c76b91;font-size:12px;font-weight:bold}
+h1{font-family:Georgia,serif;font-size:clamp(35px,9vw,54px);color:var(--deep);margin:10px 0 5px;direction:ltr}
+.subtitle{font-size:17px;margin:0 0 22px;color:#85546a}
+.flower{font-size:42px;margin:8px}
+.envelope-wrap{margin:22px auto 16px;max-width:280px}
+.envelope{border:0;background:transparent;cursor:pointer;width:100%;padding:0;transition:transform .2s}
+.envelope:hover{transform:translateY(-4px)}
+.env{height:165px;background:#f5b5cb;border-radius:12px;position:relative;box-shadow:0 10px 22px #b83f7022;overflow:hidden}
+.env:before{content:"";position:absolute;inset:0;background:#f9d2df;clip-path:polygon(0 0,50% 62%,100% 0);z-index:2}
+.env:after{content:"";position:absolute;inset:0;background:#ed9fba;clip-path:polygon(0 100%,50% 48%,100% 100%);z-index:3}
+.heart{position:absolute;z-index:4;left:50%;top:48%;transform:translate(-50%,-50%);font-size:38px}
+.hint{font-size:13px;color:#a45d7b}
+.message{display:none;text-align:right;background:#fff9fb;border:1px solid #f7d5e1;border-radius:18px;padding:20px;margin-top:18px;line-height:2;font-size:16px;animation:fade .7s ease}
+.message.show{display:block}
+.message p{margin:0 0 12px}
+.signature{text-align:center;color:var(--deep);font-weight:bold;margin-top:14px}
+button.action{border:0;border-radius:999px;background:linear-gradient(90deg,#c84f80,#e58eae);color:white;padding:13px 24px;font-size:15px;font-weight:bold;cursor:pointer;margin:12px 5px;box-shadow:0 7px 18px #c84f8033}
+button.action:active{transform:scale(.98)}
+.final{display:none;margin-top:15px;padding:18px;border-radius:16px;background:#fff0f5;color:#9f3d68;line-height:1.9}
+.final.show{display:block;animation:fade .7s ease}
+footer{font-size:12px;color:#b07890;margin-top:22px}
+.float{position:fixed;bottom:-40px;z-index:1;opacity:.7;animation:rise linear infinite;pointer-events:none}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:380px){.card{padding:25px 16px}.message{font-size:15px}}
+</style>
+</head>
+<body>
+<main>
+<section class="card">
+  <div class="kicker">A LITTLE SURPRISE MADE WITH CARE</div>
+  <div class="flower">🌷 ✨ 🌸</div>
+  <h1>Happy Birthday</h1>
+  <h1 style="font-size:clamp(42px,11vw,66px);margin-top:-5px">Weimi</h1>
+  <p class="subtitle">إلى ويمي… في يومها الجميل 💗</p>
+  <div class="envelope-wrap">
+    <button class="envelope" id="openLetter" aria-label="افتحي الرسالة">
+      <div class="env"><span class="heart">💌</span></div>
+    </button>
+    <div class="hint">اضغطي على الظرف لفتح رسالتك</div>
+  </div>
+  <div class="message" id="letter">
+    <p>إلى ويمي الجميلة،</p>
+    <p>في يوم ميلادك، أتمنى أن تكون سنتك الجديدة مليئة بالأيام اللطيفة، والضحكات الصادقة، والفرص الجميلة التي تشبه قلبك.</p>
+    <p>قد تفصل بيننا المسافات، من نيالا إلى أم درمان، لكن الأمنيات الطيبة تعرف طريقها إليك. أتمنى لك راحةً لا تنقطع، ونجاحاً يفرح قلبك، وأحلاماً تجد طريقها إلى الواقع.</p>
+    <p>لا تنسي دائماً أنك تستحقين الفرح، وأن لكل بداية جديدة حكاية جميلة تنتظر أن تُكتب.</p>
+    <div class="signature">كل عام وأنتِ بخير يا Weimi 🌷</div>
+  </div>
+  <button class="action" id="wishBtn">اضغطي لأمنية إضافية ✨</button>
+  <div class="final" id="finalWish">أمنيتي لكِ: أن تحمل لكِ هذه السنة أشياء أجمل مما تتوقعين، وأن تجدي في كل يوم سبباً صغيراً للابتسام. عيد ميلاد سعيد! 🎂💗</div>
+  <footer>Made especially for Weimi · With warm wishes 💕</footer>
+</section>
+</main>
+<script>
+const letter=document.getElementById('letter');
+document.getElementById('openLetter').addEventListener('click',()=>{
+  letter.classList.add('show');
+  document.getElementById('openLetter').style.opacity='.55';
+  document.getElementById('openLetter').style.pointerEvents='none';
+});
+document.getElementById('wishBtn').addEventListener('click',()=>{
+  document.getElementById('finalWish').classList.add('show');
+});
+const symbols=['💗','🌸','✨','💕','🌷'];
+for(let i=0;i<18;i++){
+  const el=document.createElement('span');
+  el.className='float';el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+'vw';
+  el.style.fontSize=(15+Math.random()*17)+'px';
+  el.style.animationDuration=(8+Math.random()*10)+'s';
+  el.style.animationDelay=(-Math.random()*15)+'s';
+  document.body.appendChild(el);
+}
+</script>
+</body>
+</html>
